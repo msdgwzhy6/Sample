@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView
-import luyao.sample.mergeadapter.adapter.StateAdapter
+import luyao.sample.mergeadapter.adapter.FootAdapter
 import luyao.sample.mergeadapter.adapter.StudentAdapter
 import luyao.sample.mergeadapter.adapter.TeacherAdapter
 import luyao.sample.mergeadapter.databinding.ActivityMainBinding
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mViewModel: MainViewModel
     private val teacherAdapter by lazy { TeacherAdapter() }
     private val studentAdapter by lazy { StudentAdapter() }
-    private val stateAdapter by lazy { StateAdapter() }
+    private val footAdapter by lazy { FootAdapter() }
 
     private lateinit var binding: ActivityMainBinding
 
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.run {
             val manager = LinearLayoutManager(this@MainActivity)
             layoutManager = manager
-            adapter = MergeAdapter(teacherAdapter, studentAdapter, stateAdapter)
+            adapter = MergeAdapter(teacherAdapter, studentAdapter, footAdapter)
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     if (dy > 0 && manager.findLastVisibleItemPosition() == manager.itemCount - 1) {
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             studentData.observe(this@MainActivity, Observer { studentAdapter.submitList(it) })
 
             loadState.observe(this@MainActivity, Observer {
-                stateAdapter.submitList(arrayListOf(it))
+                footAdapter.submitList(arrayListOf(it))
             })
         }
 

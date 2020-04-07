@@ -10,7 +10,7 @@ import luyao.sample.mergeadapter.data.LoadState
 import luyao.sample.mergeadapter.databinding.ItemStateBinding
 import kotlin.math.acos
 
-class StateAdapter : ListAdapter<LoadState, StateViewHolder>(StateDiffCallBack()) {
+class FootAdapter : ListAdapter<LoadState, StateViewHolder>(StateDiffCallBack()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StateViewHolder {
         return StateViewHolder(
             ItemStateBinding.inflate(
@@ -24,8 +24,6 @@ class StateAdapter : ListAdapter<LoadState, StateViewHolder>(StateDiffCallBack()
     override fun onBindViewHolder(holder: StateViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
-
-
 }
 
 class StateViewHolder(private val binding: ItemStateBinding) :
